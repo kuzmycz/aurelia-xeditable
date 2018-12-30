@@ -1,0 +1,22 @@
+<template>
+  <a if.bind="!isEditing" click.trigger="doEdit()">
+    <span if.bind="value"><i class="far fa-check-square"></i></span>
+    <span if.bind="!value"><i class="far fa-square"></i></span>
+    &nbsp;${name}
+  </a>
+  <div else>
+    <div class="form-group" >
+      <div class="input-group" validation-errors.bind="editableErrors">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" checked.bind="copy">
+          <label class="form-check-label">${name}</label>
+        </div>
+        <button type="button" click.trigger="doSave()" class="btn btn-success ml-2"><i class="fal fa-check"></i></button>
+        <button click.trigger="doCancel()" type="button" class="btn btn-danger ml-1"><i class="fal fa-times"></i></button>
+      </div>
+      <ul class="parsley-errors-list filled" if.bind="editableErrors.length > 0">
+        <li class="" repeat.for="errorInfo of editableErrors">${errorInfo.error.message}</li>
+      </ul>
+    </div>
+  </div>
+</template>
