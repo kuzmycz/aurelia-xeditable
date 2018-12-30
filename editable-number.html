@@ -1,0 +1,20 @@
+<template>
+  <a if.bind="!isEditing" click.trigger="doEdit()">
+    <span if.bind="value !== undefined" class="editable ${css}">${value}</span>
+    <span else class="editable ${css}">${empty}</span>
+  </a>
+  <div else>
+    <div class="form-group" >
+      <div class="input-group" validation-errors.bind="editableErrors">
+        <input type="number" placeholder="Enter ${name}" value.bind="copy & validate" class="form-control"/>
+        <div class="input-group-append">
+          <button type="button" click.trigger="doSave()" class="btn btn-success"><i class="fal fa-check"></i></button>
+          <button click.trigger="doCancel()" type="button" class="btn btn-danger"><i class="fal fa-times"></i></button>
+        </div>
+      </div>
+      <ul class="parsley-errors-list filled" if.bind="editableErrors.length > 0">
+        <li class="text-danger" repeat.for="errorInfo of editableErrors">${errorInfo.error.message}</li>
+      </ul>
+    </div>
+  </div>
+</template>
