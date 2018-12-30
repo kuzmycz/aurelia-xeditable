@@ -18,11 +18,11 @@ Sample usage
 <div class="col-12"><strong>Address</strong></div>
 <div class="col">
   <div class="row">
-    <div class="col-12"><editable-text value.bind="customer.address.street" maxLength="256" required="true" save.call="update('address.street', value)"></editable-text></div>
-    <div class="col-8"><editable-text value.bind="customer.address.city" maxLength="256" required="true" save.call="update('address.city', value)"></editable-text></div>
-    <div class="col-4"><editable-text value.bind="customer.address.state" maxLength="256" required="true" save.call="update('address.state', value)"></editable-text></div>
-    <div class="col-8"><editable-text value.bind="customer.address.country" maxLength="256" required="true" save.call="update('address.country', value)"></editable-text></div>
-    <div class="col-4"><editable-text value.bind="customer.address.postcode" maxLength="256" required="true" save.call="update('address.postcode', value)"></editable-text></div>
+    <div class="col-12"><editable-text value.bind="customer.address.street" maxlength="256" required="true" save.call="update('address.street', value)"></editable-text></div>
+    <div class="col-8"><editable-text value.bind="customer.address.city" maxlength="256" required="true" save.call="update('address.city', value)"></editable-text></div>
+    <div class="col-4"><editable-text value.bind="customer.address.state" maxlength="256" required="true" save.call="update('address.state', value)"></editable-text></div>
+    <div class="col-8"><editable-text value.bind="customer.address.country" maxlength="256" required="true" save.call="update('address.country', value)"></editable-text></div>
+    <div class="col-4"><editable-text value.bind="customer.address.postcode" maxlength="256" required="true" save.call="update('address.postcode', value)"></editable-text></div>
   </div>
 </div>
           
