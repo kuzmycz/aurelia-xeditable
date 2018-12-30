@@ -15,6 +15,7 @@ Add the files to your project (place them in resources/elements and then add the
   config.globalResources([PLATFORM.moduleName('./elements/editable-text')]);
 
 Sample usage
+<![CDATA[
 <div class="col-12"><strong>Address</strong></div>
 <div class="col">
   <div class="row">
@@ -25,7 +26,8 @@ Sample usage
     <div class="col-4"><editable-text value.bind="customer.address.postcode" maxlength="256" required="true" save.call="update('address.postcode', value)"></editable-text></div>
   </div>
 </div>
-          
+]]>
+
 Current Plan
 - Add more editables
 - Create an Aurelia Module
