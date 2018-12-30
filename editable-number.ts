@@ -13,13 +13,13 @@ export class EditableNumber {
   @bindable required: boolean = false;
   @bindable min: number;
   @bindable max: number;
-  @bindable({ defaultBindingMode: bindingMode.twoWay }) value: number;
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) value: number | string;
   @bindable name: string = "Value";
   @bindable empty: string = "Empty";
   @bindable css: string = "";
   @bindable save: (string) => Promise<any>;
 
-  copy: number;
+  copy: number | string;
 
   isEditing = false;
 
@@ -42,6 +42,7 @@ export class EditableNumber {
     var fluent = ValidationRules.ensure((m: EditableNumber) => m.copy).displayName(this.name).satisfies(value => true);
 
     if (this.required) fluent = fluent.required();
+    fluent = fluent.satisfies(value => value == undefined || value == null || !isNaN(value));  // Ensure that we have a number
     if (this.min) fluent = fluent.satisfies(value => value === null || value === undefined || Number(value) >= this.min).withMessage(`\${$displayName} must be at least ${this.min}.`);
     if (this.max) fluent = fluent.satisfies(value => value === null || value === undefined || Number(value) <= this.max).withMessage(`\${$displayName} must be at most ${this.max}.`);
 
@@ -57,6 +58,9 @@ export class EditableNumber {
 
     this.controller.validate({object: this}).then(result => {
       if(result.valid) {
+        // Coerce the value into a number
+        this.copy =  (this.copy == undefined || this.copy == '') ? undefined : Number(this.copy);
+
         this.save({value: this.copy}).then(result => {
           this.value = this.copy;
           this.isEditing = false;
